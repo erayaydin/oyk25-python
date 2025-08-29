@@ -16,13 +16,6 @@ def kitap_ara(isim):
 	"""
 	pass
 
-def kitap_cikar(isim):
-	"""
-	Kitaplar sözlüğündeki bir elemanı ismine bakarak sözlükten
-	çıkarır.
-	"""
-	pass
-
 def kitap_emanet(isim, ogrenci):
 	"""
 	Kitaplar sözlüğündeki elemanın 'ogrenci' anahtaırnı belirtilen
