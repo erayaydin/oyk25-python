@@ -13,7 +13,19 @@ gorevler = [
     {"ad": "G3", "odul": 30, "dakika": 60, "zorluk": 2},
 ]
 
+def puan_hesapla(odul, dakika, zorluk=1):
+    return (odul/dakika)*(4-zorluk)
+
 def en_iyi_gorev(*gorevler):
-    pass
+    max(gorevler, key=lambda g: puan_hesapla(g["odul"], g["dakika"], g["zorluk"]))
+    en_yuksek_puanli_gorev = None
+    en_yuksek_puan = 0
+    for gorev in gorevler:
+        gorev_puani = puan_hesapla(gorev["odul"], gorev["dakika"], gorev["zorluk"])
+        if gorev_puani > en_yuksek_puan:
+            en_yuksek_puan = gorev_puani
+            en_yuksek_puanli_gorev = gorev
+    return en_yuksek_puanli_gorev
 
 print(en_iyi_gorev(*gorevler))
+print(en_iyi_gorev(gorevler[0], gorevler[1], gorevler[2]))
