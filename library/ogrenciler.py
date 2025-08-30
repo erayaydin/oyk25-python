@@ -3,6 +3,21 @@ Bu modül öğrencilerle ilgili işlemleri kapsamaktadır.
 """
 ogrenciler = {}
 
+"""
+{
+	"Eray": {
+		"isim": "Eray",
+		"sinif": "Python ile Programlamaya Giriş",
+		"kitap": None
+	},
+	"Mustafa": {
+		"isim": "Mustafa",
+		"sinif": "Python ile Programlamaya Giriş",
+		"kitap": "Anna Karenina"
+	}
+}
+"""
+
 def ogrenci_ekle(isim, sinif):
 	"""
 	Öğrenciler sözlüğüne yeni bir öğrenci ekler.
@@ -23,7 +38,7 @@ def ogrenci_kitap_ekle(isim, kitap):
 	"""
 	pass
 
-def ogrenci_kitap_sil(isim, kitap_no):
+def ogrenci_kitap_sil(isim, kitap):
 	"""
 	Öğrenciler sözlüğündeki öğrenciyi bulup 'kitap' anahtarını None olarak
 	değiştirir.
