@@ -3,12 +3,26 @@ Bu modül kitaplarla ilgil işlemleri kapsamaktadır.
 """
 kitaplar = {}
 
+def kitaplari_kaydet():
+	import json
+	json_metni = json.dumps(kitaplar, indent=4)
+	with open("kitaplar.json", "w") as dosya:
+		dosya.write(json_metni)
+
+def kitaplari_oku():
+	global kitaplar
+	import json
+	with open("kitaplar.json", "r") as dosya:
+		dosya_icerigi = dosya.read()
+		kitaplar = json.loads(dosya_icerigi)
+
 def kitap_ekle(isim, sayfa=None, ogrenci=None):
 	"""
 	Kitaplar sözlüğüne yeni bir kitap ekler.
 	"""
 	deger = { "sayfa": sayfa, "ogrenci": ogrenci }
 	kitaplar[isim] = deger
+	kitaplari_kaydet()
 	#kitaplar.update({ isim: deger })
 
 # kitap_ekle("Kitap 1", 100)
@@ -54,6 +68,7 @@ def kitap_emanet(isim, ogrenci):
 	# kitaplar.update({ isim: kitap })	
 	if kitap:
 		kitap["ogrenci"] = ogrenci
+	kitaplari_kaydet()
 
 # kitap_emanet("Anna Karenina", "Mustafa")
 # kitap_emanet("Anna Karenina", None)
@@ -62,4 +77,6 @@ def kitap_sil(isim):
 	Kitaplar sözlüğündeki ilgili kitabı siler.
 	"""
 	# del kitaplar[isim]
-	return kitaplar.pop(isim, None)
+	silinen_kitap = kitaplar.pop(isim, None)
+	kitaplari_kaydet()
+	return silinen_kitap

@@ -1,7 +1,18 @@
 """
 Bu modül öğrencilerle ilgili işlemleri kapsamaktadır.
 """
-ogrenciler = {}
+ogrenciler = {
+	"Eray": {
+		"isim": "Eray",
+		"sinif": "Python ile Programlamaya Giriş",
+		"kitap": None
+	},
+	"Mustafa": {
+		"isim": "Mustafa",
+		"sinif": "Python ile Programlamaya Giriş",
+		"kitap": "Anna Karenina"
+	}
+}
 
 """
 {
@@ -18,11 +29,34 @@ ogrenciler = {}
 }
 """
 
+def ogrencileri_kaydet():
+	import csv
+	with open("ogrenciler.csv", "w") as dosya:
+		yazici = csv.writer(dosya)
+		for ismi, bilgiler in ogrenciler.items():
+			yazici.writerow([ismi, bilgiler["sinif"], bilgiler["kitap"]])
+
+# ogrencileri_kaydet()
+
+def ogrencileri_oku():
+	global ogrenciler
+	import csv
+	with open("ogrenciler.csv", "r") as dosya:
+		okuyucu = csv.reader(dosya)
+		ogrenciler = {}
+		for satir in okuyucu:
+			ogrencinin_kitabi = None if satir[2] == '' else satir[2]
+			ogrenciler[satir[0]] = { "isim": satir[0], "sinif": satir[1], "kitap": ogrencinin_kitabi }
+
+# ogrencileri_oku()
+# print(ogrenciler)
+
 def ogrenci_ekle(isim, sinif):
 	"""
 	Öğrenciler sözlüğüne yeni bir öğrenci ekler.
 	"""
 	ogrenciler[isim] = { "isim": isim, "sinif": sinif, "kitap": None }
+	ogrencileri_kaydet()
 
 def ogrenci_ara(isim):
 	"""
@@ -43,6 +77,7 @@ def ogrenci_kitap_ekle(isim, kitap):
 	ogrenci = ogrenci_ara(isim)
 	if ogrenci:
 		ogrenci["kitap"] = kitap
+	ogrencileri_kaydet()
 
 def ogrenci_kitap_sil(isim):
 	"""
@@ -56,8 +91,11 @@ def ogrenci_sil(isim):
 	"""
 	Öğrenciler sözlüğündeki öğrenciyi sözlükten siler.
 	"""
-	return ogrenciler.pop(isim, None)
+	silinen_ogrenci = ogrenciler.pop(isim, None)
+	ogrencileri_kaydet()
+	return silinen_ogrenci
 
+"""
 if __name__ == "__main__":
 	ogrenci_ekle("Eray", "Python ile Programlamaya Giriş")
 
@@ -74,3 +112,4 @@ if __name__ == "__main__":
 	print(ogrenciler)
 	ogrenci_sil("Eray")
 	print(ogrenciler)
+"""

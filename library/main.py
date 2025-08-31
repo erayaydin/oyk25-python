@@ -230,6 +230,8 @@ islemler = {
     "emanet": emanet,
 }
 
+kitaplar.kitaplari_oku()
+ogrenciler.ogrencileri_oku()
 while True:
     komut.baslik("Ana Menü")
     secim = komut.listele_secim_al(menu)
