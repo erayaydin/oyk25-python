@@ -1,0 +1,16 @@
+{
+    "isim": "Mustafa",
+    "string": "string",
+    "true": true,
+    "false": false,
+    "number/int": 1,
+    "number/float": 1.0,
+    "array/tuple": [1, "bilmem", ["oha", "nested"]],
+    "array/set": [],
+    "array/frozenset": [],
+    "array/list": [],
+    "object/dict": { "key": "value" },
+    "object/complex": { "__complex__": true, "real": 1, "imaginary": 2 },
+    "string/escape": "\"Mustafa\" dedi ki\n",
+    "null/none": null
+}
